@@ -1,0 +1,115 @@
+cont. hibernate----------
+*Session--->Client of SessionFactory
+SessionFactory---->client of ConeectionProvider
+
+ConnectionProvider->Factory for jdbc connections.
+
+TransactionFactory---->Factory for transactions
+Query--> Every framework has a query language used to perform specific operations
+
+Every maven based project contains a project specific configuration file pom.xml--->
+
+Steps to implemenet a hibernate based java application:
+-Setup the environment------->Maven Project
+-Add hibrnate specific dependancy
+-Create entity class (java Bean)
+-Provide the mapping between class and table, field and column using hbm file(xml file)
+ By convention the file name is <<entity class name>>.hbm.xml
+ eg.Course.hbm.xlm
+-Provide database configuration specific properties so that hibernate will refer to them and establish connection with the
+ database. eg. Driver Class, URL, User ID , password and so on.
+ This is done using a configuration file: CFG file.
+ It can be hibernate.properties
+ 		or hibernate.cfg.xml
+ 		or any other xml file
+-Write a main program
+ 1.Create the coniguration object
+   Once the object is created database looks for the database configuration properties from hibernate.properties 
+   If found loads the properties from that file.
+2.To tell hibernate to load the configuration properties from hibernate.cfg.xml invoke configure() method on the configuration object 
+  By any chance if the xml file name is other than hibernate.cfg.xml then use overloaded config() method.
+  eg.To load properties from config.xml
+  conf.configure("config.xml")
+3.Build SessionFactory:
+  This is done using the Configuration object by calling buildSessionFActory();
+4.Build Session:
+  This is done using openSession() of SessionFActory
+5.Build and start Transaction 
+  (Required for DML operations)
+  This is done using beginTransaction() of session
+6.Create a transaction object
+7.Attach this entity object to the session
+  DML INSERT
+  This is done using Sessions save() method
+8.Commit the transaction
+  This is done using transactions commit method
+9.Close the session
+10.Close the factory.
+-------------------------------------------------------
+
+Loading the data
+This needs to perform a sql slect and hence no transaction is required
+Loading is done using session's load() method
+eg: 
+	load(Class,Serialiazable)
+ 
+Methods DML operations:
+save()--->INSERT
+load()--->SELECT
+update()--->NO UPDATE
+delete()--->DELETE
+
+Instance states:
+An instance of an entity class goes through saveral states which are assiociated with respect topersistence context.
+Persistence Context is the Object that is solely responsible to handle persistance specific operations.(CRUD)
+
+eg: In JDBC it is Connection whereasin Hibernate it is Session
+
+There are 3 instance states:
+1.Transient
+The instance is not yet associated with the persistance context.
+Therefore the instance does not have its identity.
+
+2.Persistent
+Once the instance is associated with the persistance context it is said to be persistant state
+Therefore the instance has its identity;
+
+3.Detached 
+If the persistance context with which the entity was attached, is closed then the instance goes into detached state.
+
+--------------------------------------
+Loading the data using session.load()
+--->Hibernate by default goes for lazy loading:
+	When load() is invoked, hibernate does not hit the database and it generates a proxy
+	As long as a getter method for the id field is being invoked hibernate does not hit the database
+	As soon as any getter methood is invoked for the field other than id hibernate decides to initialize the proxy 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+This dependancy tag is used to connect to maven repository
+<dependency>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-core</artifactId>
+    <version>5.6.10.Final</version>
+</dependency>
+					----->Remote
+maven repoitory------
+					----->Local(Local system Hard disk) 

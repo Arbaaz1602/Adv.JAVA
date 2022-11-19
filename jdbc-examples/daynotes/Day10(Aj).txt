@@ -1,0 +1,106 @@
+Form processing using Spring MVC
+When processing a formthe request specific parameter values need to be captured inside some variables. 
+Therefore the request handling method must not have empty signature.it must be parameterized.
+
+In form processing the request parameter names need to be mapped with signature of  names in request handling method.
+This can be done using RequestParam annotation which is to be applied at the parameter level within the method signature  
+
+If request parameter names are same as that of variable names of request handing method signature @RequestParam can be omitted
+
+HTTP Request has saveral types 
+-GET
+-POST
+-PUT
+-DELETE
+
+To configure the request handling method there is a better alternative which clearly tells what type of httpRequest the method is going to handle.
+It is simplified using ralevent annotations.
+@GetMapping
+@PostMappng
+@PutMapping
+@DeleteMapping
+
+eg. @RequestMapping(value=/validate" , method = RequestMethod.POST)
+is equivalent of @PostMapping("/validate")
+@GetMapping("/indexPage")
+
+REST: Representational State Transfer
+
+Web Service: A web service is a service that is accessed via Web that involves machine to machine exchange of information irrespective of the platform and the technology.
+In web service standards data is exchanged between two applications using some standard format (XML)
+Since XML follows a text format in a structured way and text format is universally accepted by all OS it brings interoperability.
+Web services are of two types:
+1.SOAP based
+SOAP ---> SIMPLE OBJECT ACCESS PROTOCOL
+Resources are accessed using http sementics and data is exchanged using xml.
+The entire communication happens through xml over http.
+SOAP = XML + HTTP
+
+2.Restful
+Its purely based upon http
+REST resources are accessed using HTTP but the response can be sent using the format which best suits the consumer.
+Typically in restful services the format is JSON.
+JSON--->JavaScript Object Notation
+
+Rest resources can be respresented in any form including JSON and XML
+Rest client--> Any program that makes request to rest API is rest client.
+
+
+REST implementation:
+1. Spring MVC framework: suitable for combining monolithic and micro services
+
+2.Spring Boot frameork
+Most useful for building restful services.
+Provides mechanism to bootstrap the application with minimum efforts
+
+Building REST API using Spring Boot
+There are 3 options:
+1. Using Spring Boot Starter plugins available with some special IDE: Spring tool Suite
+2. Using CLI: Command Line Iterface
+3. Using Spring web initializer
+	start.spring.io
+
+@SpringBootApplication------> Annotation used in spring boot that combines 3 annotations
+1.@configuration
+2.@ComponentScan
+3.@EnableAutoConfiguration
+
+Changing the default port
+In spring boot application the application specific configurations settings are done inside properties file. application.properties
+
+To change the port number use server.port
+Create REST endpoints
+To create rest Endpoints, create REST implementation class
+This must be annotated with @RestController so that it is considered as REST implementation class
+
+Add an endpoint using some method that handles httpRequest
+In Rest the returned value is not a view name rather it is a data.
+
+JSON Format:
+{
+  "restrauntId":"R01",
+}
+
+The conversion between java and jason or vice versa is done using an API knownas JAckson API. 
+
+To capture the value available in the path variable @PathVariable annotation is used.
+It is applied at the parameter level
+
+A rest Api can also be be tested using a tool postman.
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,118 @@
+JDBC: JAVA TO DATABASE CONNECTIVITY
+API that allows java application tointeract with database
+
+JAVA APPLICATION -----------> JDBC-------------->DATABASE
+CRUD- CREATE, READ, UPDATE, DELETE
+
+JDBC Driver: 
+Application which wants to connect with database is database client.
+Vendor Specific API: Vendor gives an API that simplifies access for the client programs for connecting to the database.
+Every vendor specific driver are producedby their vendors there is conflict in using different specifies. This mismatch is resolvedby a mediator which 
+is known as driver. Driver is basically a program which resolves the conflict.
+JAVA APP.------->JDBC------->DRIVER--------->VENDOR API--------> DATABASE
+Types of JDBC Driver:
+1. Type 1: JDBC-ODBC Bridge
+- uses the 3rd party library known as ODBC which is provided by Microsoft.
+JAVA APP.----->JDBC----->TYPE 1 DRIVER------>ODBC------->Vendor API------>DATABASE
+
+ODBC uses its own driver to convert the call to vendor specific API. Hence this takes more time. Hence prformance is very slow.
+-It is platform dependant.
+-It is the slowest
+-Every client machine must have ODBC configurations setup
+
+At very higher leveltype 1 driver is not recommended. It may be used for small programs for testing purpose.
+
+2.Type 2:Native API, partly java driver
+Uses a combination of java as well as databse proprietary standards for implementation.
+JAVA APP.----------->JDBC------------->TYPE 2 DRIVER---------->VENDOR SPECIFIC API-------->DATABASE
+-This is faster than type 1;
+-This is platform independant.
+-Every client machine must have this API installed on the machine.
+
+3.Type 3 driver
+Net protocol, Intemediate DB Access Server
+It is used when an application needs to connect with multiple databases.
+
+
+
+
+									------->VENDOR SPECIFIC API------>DATABASE
+JAVA APP.----->JDBC------->TYPE 2 DRIVER---->INTERMEDIATE DB ACCESS 	------->VENDOR SPECIFIC API------>DATABASE
+									------->VENDOR SPECIFIC API------>DATABASE
+
+
+4.Type 4 Driver
+-DataBase Specific, Pure Java Driver
+-Every DB vendor provides its own implementation
+-Directly connects to DB using TCP/IP socket connections.
+
+JAVA APP.------->JDBC----->TYPE 4 DRIVER------->VENDOR SPEC. API------>DATABASE
+				|
+			SOCKET WITH IP ADDRESS 
+
+-It is the fastest as compared to type 1 and type 2 driver
+-It is platform independant
+-No configuration required on client machine.
+-Hence highly recommended for large scale application as well as production environment.
+
+JDBC CORE API:
+To implement JDBC program java provides an API known as JDBC API.
+Belongs to package java.sql;
+
+Steps in JDBC program:
+-Load the driver
+-establish connection 
+-Obtain the the statement
+-Execute SQL query
+(For SELECT query) Obtain the resultset and perform navigation. 
+
+A JDBC connection is typically established using 3 properties:
+-Connection URL
+-UserId
+-Password
+
+To establish connections there are two ways:
+-Using DriverManager Class
+-Using Driver Interface 
+
+In jdbc queries are divided into two types.
+1. Simple queries----> In case of simple query 'Statement'is used
+2. Parameterized queries------------>In case of Parameterized query 'Statement'is used
+
+Every column of resultSet has column index which depends upon the Sql query and not the original table design.
+To read the values resultSet provides getXXX() method.
+getString(1)----> 1 is the index to be passed
+
+To interact with data layer like file system or a database there is a commonly used pattern:
+DAO- Data access Object
+This is very frequently used to perform CRUD operations. It is handled by using a generic interface.
+
+interface DAO<T> {
+add(T t);
+} 
+
+Parameterized query:
+To execute parameterized queries 'PreparedStatement' interface is used;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

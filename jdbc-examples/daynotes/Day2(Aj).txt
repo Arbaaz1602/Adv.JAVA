@@ -1,0 +1,109 @@
+Continued from day 1 (JDBC):
+To work with other types of drivers URL and driverclass name will change. There will be a need to configure relative types
+Steps for updation:
+-Obtain the entity which updation is required
+-make changes as required by calling setter methods
+-Send the latest state to the DAo implementation update method
+
+Transaction Management:
+Set of operations that must execute in a single unit
+TCL- Transaction Control Language
+Automicity- Execute all or or nothing (to avoid data inconsistency problem)
+To manage transaction autocimmit must be disabled.
+Can be done by using 'setAutoCommit(false)' on the connection object;
+once autoCommit is disabled commit() and rollback() methods can be used.
+
+Summary:
+----------------------------------------------------------------------------------------------------------
+JAVA SE: Desktop/standalone Application, Simple network based application(LAN)
+JAVA EE: Web based Application
+platform designed to perform web based as well as enterprise level application
+Java EE emphasizes upon component riven architecture  
+Service Requirements:
+-Scalabilty
+-Availability
+-Performance
+-Flexibilty
+-Security
+-Re-usability
+-Asynchronous Messaging - Sender sending message without thinking if user will recieve or not.
+ 
+Components: Application level reusable unit.
+Types:
+-Unmanaged - component which gets instantiated implicitly are unmanaged.(Using new keyword in core java);
+-Managed - components taken care by an environment known as 'Container';
+
+Types of Components:
+1. Web Component
+-Responsible for accepting a web request and generating a web response is called as a web component e.g. Servlet and JSP.
+2.Business Component;
+-Responsible for handling a business logic of the application. e.g. EJB;
+
+CONTAINER: manages life cycle of JAVA EE components.
+Types:
+Web Container
+Run time environment responsible managing life cycle of web componenets. Servlet or JSP
+has to made available by 3rd party product called Web Server
+The most used is Apache Tomcat
+EJB Container:
+made available by 3rd party product called an Application Server. Application Server is an extension of Web Server
+
+Servlet:
+HTTP: hyper text transfer protocol
+It is a stateless protocol or request response protocol
+-Does not maintain conversational state between 2 requests
+-cannot recognize client
+
+Servlet: Component used to extend the functionality of web server.
+Component that resides on server side and performs server side processing.
+used to generate dynamic web contents.
+dynamic content - content depending on incoming user
+static content - same content for everyone(Done using HTML)
+
+SERVLET API*
+javax.servlet;
+javax.servlet.http;
+
+To implement servlets it is necessary to create a java class that is known as Servlet implementation class
+There are 3 ways to create Servlet implementation Class:
+-Implement 'Servlet' interface
+Enforces the class to implement all the methods irrespective of whether they are in use or not. Therefore not much recommended.
+-extend 'GenericServlet' class
+This option is used in order to create a servlet which is protocol independent.
+-Extend 'HttpServlet' class
+This option is used in order to create a servlet which is specifically meant for handling HTTP request and generating HTTP Response.
+
+http://localhost:7878/WebApp/hello
+ |		|		  |		|		|
+prot   IP		port   context  URL
+ocol					Root
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

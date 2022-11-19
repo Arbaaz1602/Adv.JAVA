@@ -1,0 +1,143 @@
+----------------Servlet part 2---------------
+When GET request is made to the servlet.
+The servlet recieves the HTTP GET request if it is accessed:
+1.By typing the url in the browser's address bar.
+2.Using html's anchor tang <a href="hello">Click Here</a>
+3.Using html form without 'method' attribute.
+
+The servlet recieves http post request if it is accessed using html form with 'method=post'
+
+COLLABORATION
+when two componenets of same web application are interacting with each other, that process is kniwn as collaboration.
+Benifits:'
+Modularity
+Reusability
+
+
+		<---------------	invalid				valid
+login.html-------->ValidationServlet--------->DisplayServlet
+												|
+	<---------------------------------------------			
+	
+One Servlet can become a client of another servlet,
+
+RequestDispatcher(I)--> Used to achieve collaboration between the components running within the same web application.	
+-----------------
+Collaboration is handled using javax.servle.RequestDispatcher
+The componenet which want to collaborate needs to obtain the referance of type RequestDispatcher 
+for the component which is the target	
+
+How to obtain RequestDispatcher:
+A request Dispatcher is obtaained using javax.servlet.ServletRequest
+It provides a mothod 
+RequestDispatcher getRequestDipatcher(String targetURL);
+
+How to use RequestDispatcher. 
+This is used by calling one of the two methods:
+forward(ServletRequest, ServletResponse)
+-Forwards a request to the target and generates a response back tothe client
+include(ServletRequest, ServetResponse)	
+-forwards the request to the target, takes the reponse from the target comes back to the sourceand the source generates response 
+back to the client.
+
+-------------------------------------------------------------------------------------------------------------------
+Session Management:
+Activity to maintain the state along with the client
+In a web application an end user can make some transaction through one or multiple requests
+During this server needs to maintain a conversational state along with the client.
+This technique is known as session tracking.
+
+methods of session tracking:
+-URL tracking
+-Hidden fields
+-cookies
+-Servlet API - HttpSession
+
+HttpSession(I)---------->javax.servlet.http;
+For every user httpSession maintains a state.
+
+*In orderto manage state it is necessary to manage an object of type javax.servlet.http.httpSession;
+HttpSession is obtained using httpServletRequest;
+provides two methods:
+HttpSession getSession()------>Returns an existing session if available Otherwise creates a new one and returns same
+HttpSession getSession(boolean)--------> Behaves same as that of getSession() if true is passed.
+                                         If false is passed returns a session only if available.
+                                         If not available does not create a new session. returns null;
+                                         
+----------------------------------------
+JSP------>JAVA SERVER PAGES
+Server side component that is used to extend functionality of web server.
+Used to generate dynamic web content
+All the things which is done by JSP same can be done using servlet and vice versa.
+
+Logic in web application:
+Processing logic
+Presentation logic
+
+Why JSP
+-Allows developers to concentrate on presentation rather than processing.
+-Designer without knowing java still can develop eligant web pages
+
+For first ever request jsp gets loaded by web container. 
+jsp gets translated into servlet by web container
+(JSP is an abstraction over Servlet)
+The time at which translation happens is known as translation time which is recorded by web container in a saperate object.
+That object is known as timestamp
+web container invokes jspinit()
+web container invokes _service()
+from 2nd request onwards---> only _service()
+if server is stopped or undeloped then jspDestroy()
+
+Life cycle methods for jsp:
+jspinit()
+_jspService()
+jspDestroy()
+
+What can be written inside a jsp page?
+-All html tags
+-Any valid java code
+-JSP tags
+
+JSP tags types
+-Directives
+-Scripting Elements
+-Standard Action
+
+_directives------------->denoted by <%@............%>
+1.page- Used to specify some information about page
+<%@page attr="value"....%>
+-language-->specifies scripting language of jsp page.
+-extends
+-import
+-session
+-isTreadSafe
+-errorPage
+-isErrorPage
+
+2.include------------>used to include resources like html,jspor text files.
+3.taglib
+
+Scripting elements
+-Declaration-->used to declare variables and define methods
+-Scriplet--> used to write any valid java code. 
+-Expression
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					

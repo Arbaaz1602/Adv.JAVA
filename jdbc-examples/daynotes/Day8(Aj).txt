@@ -1,0 +1,87 @@
+Cont. of spring
+
+When a class depends on any predefined api then it is not pojo. For user created Api it is pojo
+
+Steps for spring prohect:
+1.Setup the Environment
+2.Add spring specific dependancies-
+									Spring Core
+									Sprint Context
+3.Create an interface (Spring promotes programming by interface
+4.Create an implementation class of the interface
+Spring can manage the life cycle of the java components only when they are registered with Springs environment
+5.Register the object of the class as a 'bean' within the springs configuration unit
+	There are two ways to build configuration unit:
+	1. Xml
+	2. Annotations
+6.Write the main class
+
+Object Loading:
+In Spring, the beans declared in the configuration unit are instantiated eagerly by default. 
+Spring implements EAGER loading by default
+It is possible to disable eager loading by using "lazy-init=true" 
+
+In a maven based project when an xml file is located under src/main/resources directory it gets loaded in the projects class path
+bean: is the element which is most basic configuration unit in Spring. It tells Container to create an object.
+
+Methods of injection
+1.Setter injection: If the bean has some properties then the values for those properties can be assigned by spring using setter methods. 
+This is known as setter injection.
+
+2.Constructor injection:If the bean has some properties then the values for those properties can be assigned by spring using parameterized constructors of bean class.
+This is known as Constructor injection.
+----In constructor injection the sequence of argumenta configured in xml file from top to bottom is taken as left to right by default.
+It is possible to change the sequence using index attribute.
+
+3.Referance injection
+This is possible by using the 'ref' attribute.
+
+AUTO WIRING:
+When one bean is dependant upon another bean then it leads to bean wiring. 
+Bean wiring is of two types:
+1.Explicit
+2.Implicit (Auto wiring)
+Rather then explicityl wiring the beans properties. Spring can automatically figure out how to write beans.
+This can be done using 'Autowire'
+Types of names:
+1.Byname
+Attempts to find a bean in the container whose name is same as the name of the property being fired.
+2.Bytype
+Attempts to find the bean of the same name as taht of type
+If multiple beans of same type arefound it leads to ambiguity:
+This can be resolved using following options:
+1.Declare a single bean
+2.use primary= 'true' for the bean that has to be wired
+
+3.constructor
+it tries to load the constructor of the bean
+
+
+BEAN SCOPE:
+Every bean registered in xml file has scope. 
+It is possible to modify scope using 'scope' attribute
+
+Types of Scope:
+-singleton----->When a class can produce only one object(singleton class)
+default scope
+if same bean is requestedmultiple times spring returns same object.
+-prototype
+every time request is made new object is created every time
+-request
+in web environment every time a request is made every time a new object is created
+-session
+web based
+bean is alive until session is over
+bean can survive even if response is generated
+in web environment every time a request is made every time a new object is created
+-global-session
+portlets-application divided into various sections.
+This section is a portlet
+ 
+
+
+
+
+
+
+

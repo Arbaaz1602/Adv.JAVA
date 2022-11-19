@@ -1,0 +1,163 @@
+------Hibernate contd.
+When session.beginTransaction is invoked hibernate calls setAutoCommit(false) for the underlying jdbc connection object
+By default hibernate goes for lazy loading in order to disable lazy loading.
+Unable eager loading use lazy="false" in hbm file  
+
+Configuration
+SessionFactory
+Session
+Transaction
+
+ConnectionProvider
+Provides Connection
+Used by Session
+
+TransactionFactory
+Produces transaction
+used by session
+
+Dialect: Some configurations are needed to be specified to the hibernate as per the sql databases. For this a dialect needs to be provided.
+The dialect property tells hibernate about capabilities of underlying database and behave accordingly in order to to configure the settings
+
+The class of which the object is managed by hibernate for handling crud operations is known as persistant class
+
+General guidelines/rules about persistant class
+-Must provide an identity
+-avoid 'final' modifier for classes (It will limit the option for performance optimization which is achieved through proxy.
+-Override hashcode() and equals() if the instances are to be stored in a hash based collection.
+
+Re-Attachment:
+the instance of the Persistant Class which is in the detached state can be brought back into the persistant state.
+this is known as Re-Attachment.
+It is done using session.update();
+update() method is used to bring an object from detached state to persistant state.
+eg:
+
+Student newStudent = session.load(.........);
+session.close();//session is close();
+//newStudent can be modified using setters.
+
+//Reattaching
+session = factory.openSession();
+session.update(newStudent);//newStudent is re attached --------->PERSISTENT
+
+Hibernate Mapping:
+In hibernate the entity class needs to be mapped with the db table. whereas feilds are to be mapped with columns.
+
+This mapping can be done by two ways.
+-XML
+-Annotations
+
+Annotations are directly added into the java source code and they foster rapid application developement. 
+Annotations are of two types:
+-Hibernate Annotations
+-JPA Annotations (JAVA PERSISTENCE API)---->STANDARDIZED
+JPA is a specification implemented by some ORM framework
+
+When annotations are to be used
+Persitant class must be declared as an Entity. This done by using '@Entity' annotation
+
+The entity class needs to be mapped ith some database table.
+This is done using '@Table' annotation
+
+Persistant classes must provide at least one identity property.
+This is done usin '@Id'annotation
+
+Fields are to be mapped using column
+Done using @column
+
+When annotations based metadata is concerned:
+2 Annotations are mandatory
+-@Entity
+-@Id
+That means @Table and @Column are optional
+If @Table is omitted the table will take the name of Class name
+If @Column is omitted the column will take name in the field name
+
+-----------------------------------------------------------------
+
+HIBERNATE QUERY LANGUAGE (HQL)
+used to execute against database
+based on the relational object model
+Sql------->tables and columns
+HQL------->fields and classes
+
+Apply restrictions to properties of associated objects related by referance or held in collections
+The ability to retrieve only properties of an entitly or entities without the overhead of other entities.
+FROM
+From clause loads the whole object of the entity class
+SELECT
+select clause is used toselect specific fields. This helps in reducing the overhead of loading the whole object
+
+HQL also provides support for constructor expression
+This option allows to populate a list of an object of some specific type
+
+HQL provides one more option to provide Query operations.
+Is is the Criteria API
+This can be used to handle query operations without writing the query
+It is also possible to add restrictions using a class 'Restrictions'
+
+
+--------------------------------------------------------------------------------------------
+SPRING(FRAMEWORK)
+Spring is a lightweight dependancy injection aspect oriented container and framework.
+It is a component as it creates the java component for your application and manages their life cycle
+It is lightweight in terms of size and overhead
+It is distributed in a single zip file
+Spring is a container as it creates the java components for your application and manages their life-cycle.
+
+POJO:Plain old Java objects
+When a class is independent of any framework specific API then it is referred as POJO.
+features:
+1.Loose Coupling
+Applications built using Spring are loosely coupled as it is not required.
+2.Dependancy injection
+A technique through which dependent objects are given to the component so that component does not create dependent object themselves
+3.Aspect oriented programming
+is a programming modl that promotes saperation of business logic from system concerns such as logging, transaction management,security,persistence;
+the code that implements these system wide concern is not duplicated accross multiple componenets
+4.data access support
+Abstarcts away the common code like opening and closin connections so that database can be clean and simple
+5.Support for enterprise service
+-Transaction management
+-persistence
+-Asynchronous messaging
+-Security
+-Task Scheduling
+6.Integration Support
+Supports integration with other technologies like EJB,etc.
+7.MVC support
+has its own MVC framework and even it can integrate existing popular MVC frameworks like struts,JSF,Tapestry tc.
+M-->Model-->Business Component
+V-->View--->Presentation component
+C-->Controller--->Navigation component
+
+ApplicationContext
+Built on top of core container
+Provides support for internationalization
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

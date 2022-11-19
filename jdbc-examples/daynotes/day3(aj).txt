@@ -1,0 +1,93 @@
+Enterprise services:
+-Scalability
+-Availabilty
+-Concurruncy
+-Performance
+-Asynchronous messaging
+-Security
+
+*Search for MIME*
+
+Components:
+-managed component- objects are implicitely created by the container(tomcat server)
+
+Servlet life cycle
+-instatitaion and initialization
+-service
+-destroy
+
+life cycle methods:
+-init()
+-service()
+-destroy()
+
+invokation pattern:
+1st request:
+-init()-------->invoked
+-service()-------->invoked
+
+2nd request onwards
+-service() ------->invoked
+
+
+-instatitaion and initialization
+When the servlet is requested for the very first time, its class is loaded by web container and as soon as loading is finished, 
+the object of that class is created by the web container.
+Then the container invokes the init() method.
+This process happens only one time
+
+-service
+Then the request is processed and response is generated.
+On subsequent requests only processing and response generation happens.
+At this stage container invokes service() method.
+
+-destroy:
+when the server is stopped or when the application is undeployed then the destroy stage comes into picture.
+At this stag destroy() method is invoked.
+
+All the life cycle methods belong to javax.servlet.Servlet interface.
+
+--------------------------------------
+The service method is already available in httpServlet class. This method checks the type of incoming http request.
+http requests are divided into saveral types. 
+eg.
+get
+post
+put
+delete  
+options 
+trace
+head
+
+Once the type is identified delegates the call to xxx method;
+eg for get - doGet()
+for post - dPost() and so on
+
+SERVLETCONFIG:(I)-----> Interface implemented by the genericServlet class
+when the container creates an object and object og type objectConfig is also created.
+
+ServletContext(I)----->
+An object of servletContext is created per application.
+It is useful to handle application level information
+Used to create application specific object
+-public void setAttribute(String, Object)
+-public Object getAttribute(String);--->returns null if attribute not found
+
+Html form processing:
+till EE version of 2.5 xml file was mandatory. now in later versions annotations are used
+Request parameters: Data sent from client to server
+
+
+http://localhost:7878/WebApp2/doValidate?uid=Shabnam&pwd=shabnam1234
+
+http://localhost:7878/WebApp2/doValidate
+
+
+
+
+
+
+
+
+
+

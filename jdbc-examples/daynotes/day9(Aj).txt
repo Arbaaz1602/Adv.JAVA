@@ -1,0 +1,173 @@
+ANNOTATIONS BASED CONFIGURATION:
+spring framework provides support annotations 
+Developers may discard xml totally and take full advantage of annotations
+
+Two options:
+-java based configuration
+-Pure annotation based configuation
+
+While working with annotations,the configuration is to be done in a java class.
+This class is known as spring configuration specific class.
+
+In annotation based metadata which is (java based), the class of which the bean is to be configured the object of that class must be returned 
+from some method of the configuration specific class.
+
+When a bean is configured using @bean by default it gets registered in the configuration unit with id which is the name of the method on which
+it is registered.
+
+AnnotationConfigApplicationContext:
+is the aplicationContext used to load bean configured using configuration of metadata
+
+the class which is used as a configuration unit must be registered with AnnotationConfigApplicationContext.
+This is done using its register method
+
+Once registeration is done changes made to the context are not taken into consideration until the context is refreshed.
+Therefore it is necessaru to referesh the context using refresh method
+
+Configure pre defined bean
+Simplifying the registration process.
+Assigning a different id for the bean other then method name
+When an object of AnnotationConfigApplicationContext is created using a parameterizedconstructor the registration and refreshment
+is done implicitely.
+
+To implement lazy loading using annotations use '@lazy(true)' 
+To implement autowiring using spring annotations. Spring provides an annotation '@AutoWired'
+It is applied at the field level of the property that is to be auto wired
+If done so it results into 'Bytype' autowiring
+
+
+*If autowiring with byType strategy is implemented using xml and if there is no bean found of that type in the configuration unit then the property gets wired with default value (set to null);
+Therefore autowirin using xml implements OPTIONAL kind of behaviour.
+
+*Whereas If autowiring with byType strategy is implemented using a @Autowired annotation and if there is no bean found of that type then Spring throws an exception;
+Therefore autowiring using @Autowired implements MANDATORY kind of behaviour.
+
+It is possible to switch to optional behavior by using required-'false
+
+If more than one bean is found it creates an ambiguity. 
+To resolve that ambiguity Spring provides @Qualifier Annotation
+
+Using @configuration and @bean is is necesary to return objects using new operator
+Therefore it is known as java based configuration.
+
+It is possible to obtain the objects without 'new' operator through reflection API
+Therefore it is known as pure annotation based configuraton
+
+In pure Annotation based configuration the class of which bean is to be registered must be declared as a component.
+This is done using @Componenet
+
+Bean of Classes annotated with @component can be obtained using a referance of Class Class.
+
+Classes annotated with @Component need to be scanner especially when they belong to different packages. This is done using @ComponentScan 
+
+SPRING MVC:
+MVC-Model View Controller
+Model--->Business Logic
+View----> Presentation logic
+Controller-->Navigation logic
+
+---->MVC is a commonly used design pattern for building web based applications.
+Model--->Business Logic
+Typically it is taken care by java beans or enterprise java beans EJBs
+
+View----> Presentation logic
+Typically in a web based application it is done using JSPs
+
+Controller-->Navigation logic
+Typically in a web based application, it is done using Servlet
+
+
+MVC pattern has two forms:
+MVC 1-(PAGE CENTRIC)
+All the aspects e.g: presentation, processing and navigation are handled by jsps discarding servlets at all
+This leads to tight coupling and not much recommended.
+MVC 2-(SERVLET CENTRIC) e.g:
+All the aspects are saperated from each other.
+E.g. JSP for view, EJB or java bean for model and servlet for controller.
+This leads to loose coupling and is highly recommended.
+
+Spring MVC is completely based upon MVC 2.
+It means spring MVC enforces best practices
+
+Spring MVC follows one more pattern: 
+Front Controller: A single controller in the application which will handle all the incoming requests  
+Componenets of Soring MVC:
+1.Front Controller
+2.Controller
+3.Model
+4.View
+5.View Resolver
+
+
+Front Controller:(Pre-defined)
+Every incoming request first hits this controller and then gets delegated further
+dispatcherSevlet is pre defined component class to implement front
+
+Controller:(User-defined)
+Responsible for processing the request
+Acts as a gateway to the model
+returns a view name upon completionof request processing
+implemented using a simple java class
+
+Model:
+Object used to store request specific data
+object that is responsible for handling the business logic
+
+View:
+A component that is actually used to render the result page back to the client.
+used model object to render domain specific data
+
+View Resolver
+A component that recieves request from controller to find the appropriate view
+Selects a view based upon configuration settings.
+
+
+STEPS OR BUILDING SPRING MVC APPLICATION:
+1.Create a maven based project with appropriate Archetype selection
+2.Setup the environment: Target Runtime,
+						 java version, 
+						 spring mvc specific dependancies
+3.Create a folder under web inf and put jsps into that						 
+4.Create a folder names as java under src/main
+5.Configure the front controller dispatcherServlet in such a way that it will accept all the incoming requests
+This is done using interface: WebApplicationInitializer
+6.Configure View Resolver
+This is done using interface: WebMvcConfigurer
+							  This is a marker interface
+							  There are saveral view resolvers available in spring MVC 
+							  The most commonly used is: InternalResourceViewResolver
+							  It mainly works upon two properties (prefix and suffix)
+7Createa controller
+In spring MVC controllers are simple java classes
+To indicate them as controller they must be annotated with @Controller
+
+8.define a method that is use to handle httpResquest.
+To tell Spring MVC that method is not an ordinary method, rather it is a request handling method 
+and it will be called against some url.
+This is done using @RequestMapping annotation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+fghvv
