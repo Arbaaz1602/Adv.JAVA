@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name = "example.entity.student.Student" table = "student" lazy="false">
+    
+     <id name = "roll" type = "int" column = "roll"></id>
+     <property name = "name" column = "name" type = "string"/>
+     <property name = "score" column = "score" type = "int"/>
+      
+    
+   </class>
+</hibernate-mapping>
